@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - Taluhu Tides</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="Logo.png" alt="Taluhu Tides Logo">
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="icons">
+        <a href="cart.html" class="cart-link">
+            🛒 <span id="cart-count">0</span>
+        </a>
+    </div>
+</header>
+
+<section class="checkout-page">
+
+    <h1>CHECKOUT FORM</h1>
+
+    <form class="checkout-form" id="checkout-form">
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input
+                    type="text"
+                    id="full-name"
+                    name="full_name"
+                    placeholder=""
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="phone-number">Active Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone-number"
+                    name="phone_number"
+                    placeholder=""
+                >
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Internal or External</label>
+
+            <div class="checkout-options">
+
+                <button
+                    type="button"
+                    class="checkout-option"
+                    data-type="Internal"
+                >
+                    INTERNAL
+                </button>
+
+                <button
+                    type="button"
+                    class="checkout-option"
+                    data-type="External"
+                >
+                    EXTERNAL
+                </button>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Delivery Option</label>
+
+            <div class="delivery-options">
+
+                <button
+                    type="button"
+                    class="delivery-option"
+                    data-delivery="Pick up on spot"
+                >
+                    PICK UP ON SPOT
+                </button>
+
+                <button
+                    type="button"
+                    class="delivery-option"
+                    data-delivery="Titip ke team member"
+                >
+                    TITIP KE TEAM MEMBER
+                </button>
+
+                <button
+                    type="button"
+                    class="delivery-option"
+                    data-delivery="Gojek"
+                >
+                    GOJEK
+                    <span>(extra fee)</span>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="form-group">
+            <label>Order Summary</label>
+
+            <div class="order-summary">
+
+                <div class="order-summary-header">
+                    <span>Item</span>
+                    <span>Quantity</span>
+                    <span>Price</span>
+                </div>
+
+                <div id="checkout-items"></div>
+
+                <div class="order-summary-total">
+                    <strong id="checkout-total">Total: Rp 0</strong>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PAYMENT SCREENSHOT -->
+
+        <div class="form-group">
+            <label for="payment-screenshot">Payment Screenshot</label>
+
+            <div class="payment-box">
+
+                <label
+                    for="payment-screenshot"
+                    class="upload-button"
+                >
+                    UPLOAD PAYMENT SCREENSHOT
+                </label>
+
+                <input
+                    type="file"
+                    id="payment-screenshot"
+                    name="payment_screenshot"
+                    accept="image/*"
+                >
+
+                <p id="file-name">No file selected</p>
+
+                <img
+                    id="payment-preview"
+                    src=""
+                    alt="Payment Screenshot Preview"
+                >
+
+            </div>
+        </div>
+
+        <!-- HIDDEN INFORMATION FOR EMAILJS -->
+
+        <input
+            type="hidden"
+            id="customer-type"
+            name="customer_type"
+        >
+
+        <input
+            type="hidden"
+            id="delivery-method"
+            name="delivery_method"
+        >
+
+        <input
+            type="hidden"
+            id="order-details"
+            name="order_details"
+        >
+
+        <input
+            type="hidden"
+            id="total"
+            name="total"
+        >
+
+        <button id="submit-order" type="submit">
+            SUBMIT ORDER
+        </button>
+
+    </form>
+
+</section>
+
+<footer>
+    <img src="Logo.png" alt="Taluhu Tides Logo">
+    <p>© 2026 Taluhu Tides. All rights reserved.</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
