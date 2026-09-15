@@ -35,7 +35,7 @@ function addToCart(name, price) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCart();
-    showNotification(name);
+    showNotification();
 }
 
 function updateCart() {
@@ -80,10 +80,15 @@ function removeItem(index) {
     updateCart();
 }
 
-function showNotification(name) {
+function showNotification() {
     const notification = document.createElement("div");
     notification.classList.add("cart-notification");
-    notification.textContent = `${name} added to cart!`;
+    notification.textContent = "CHECK CART";
+
+    notification.addEventListener("click", () => {
+        window.location.href = "cart.html";
+    });
+
     document.body.appendChild(notification);
 
     setTimeout(() => {
@@ -92,11 +97,10 @@ function showNotification(name) {
 
     setTimeout(() => {
         notification.classList.remove("show");
-
         setTimeout(() => {
             notification.remove();
         }, 300);
-    }, 2000);
+    }, 5000);
 }
 
 const productImages = document.querySelectorAll(".product-image img");
@@ -161,7 +165,6 @@ if (checkoutButton) {
 }
 
 updateCart();
-
 // ===============================
 // PO BATCH 1 POPUP
 // ===============================
@@ -169,6 +172,16 @@ updateCart();
 const poPopup = document.getElementById("po-popup");
 const popupClose = document.getElementById("popup-close");
 const popupShop = document.getElementById("popup-shop");
+
+if (poPopup) {
+    const popupShown = sessionStorage.getItem("poPopupShown");
+
+    if (popupShown === "true") {
+        poPopup.style.display = "none";
+    } else {
+        sessionStorage.setItem("poPopupShown", "true");
+    }
+}
 
 if (popupClose) {
     popupClose.addEventListener("click", () => {
@@ -189,7 +202,6 @@ if (popupShop) {
         }
     });
 }
-
 // ===============================
 // CHECKOUT ORDER SUMMARY
 // ===============================
@@ -426,7 +438,7 @@ if (checkoutForm) {
             document.getElementById("submit-order");
 
         submitButton.disabled = true;
-        submitButton.innerHTML = "SENDING...<br>please wait a moment. DO NOT REFRESH.";
+        submitButton.innerHTML = "SENDING...<br>please wait a moment<br>DO NOT REFRESH.";
 
         const reader = new FileReader();
 
