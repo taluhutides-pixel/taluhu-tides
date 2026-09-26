@@ -1,5 +1,4 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 const buttons = document.querySelectorAll(".cart-button");
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
@@ -165,6 +164,7 @@ if (checkoutButton) {
 }
 
 updateCart();
+
 // ===============================
 // PO BATCH 1 POPUP
 // ===============================
@@ -202,6 +202,7 @@ if (popupShop) {
         }
     });
 }
+
 // ===============================
 // CHECKOUT ORDER SUMMARY
 // ===============================
@@ -458,7 +459,6 @@ if (checkoutForm) {
             };
 
             try {
-
                 await fetch(
                     GOOGLE_SCRIPT_URL,
                     {
