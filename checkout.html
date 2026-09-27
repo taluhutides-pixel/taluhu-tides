@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - TaluHu Tides</title>
+    <title>Checkout - Taluhu Tides</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
@@ -31,33 +30,52 @@
 
     <h1>CHECKOUT FORM</h1>
 
-    <form class="checkout-form" id="checkout-form">
+<form class="checkout-form" id="checkout-form" novalidate>
+
+        <!-- FULL NAME + PHONE -->
 
         <div class="form-row">
 
             <div class="form-group">
                 <label for="full-name">Full Name</label>
+
                 <input
                     type="text"
                     id="full-name"
                     name="full_name"
-                    placeholder=""
                 >
             </div>
 
             <div class="form-group">
                 <label for="phone-number">Active Phone Number</label>
+
                 <input
                     type="tel"
                     id="phone-number"
                     name="phone_number"
-                    placeholder=""
                 >
             </div>
 
         </div>
 
+
+        <!-- EMAIL -->
+
         <div class="form-group">
+            <label for="email">Email</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+            >
+        </div>
+
+
+        <!-- INTERNAL / EXTERNAL -->
+
+        <div class="form-group">
+
             <label>Internal or External</label>
 
             <div class="checkout-options">
@@ -79,9 +97,35 @@
                 </button>
 
             </div>
+
         </div>
 
+
+        <!-- KELAS / NO ABSEN -->
+
+        <div
+            class="form-group"
+            id="kelas-group"
+            style="display: none;"
+        >
+
+            <label for="kelas-absen">
+                Kelas / No Absen
+            </label>
+
+            <input
+                type="text"
+                id="kelas-absen"
+                name="kelas_absen"
+            >
+
+        </div>
+
+
+        <!-- DELIVERY -->
+
         <div class="form-group">
+
             <label>Delivery Option</label>
 
             <div class="delivery-options">
@@ -112,11 +156,14 @@
                 </button>
 
             </div>
+
         </div>
+
 
         <!-- ORDER SUMMARY -->
 
         <div class="form-group">
+
             <label>Order Summary</label>
 
             <div class="order-summary">
@@ -130,16 +177,23 @@
                 <div id="checkout-items"></div>
 
                 <div class="order-summary-total">
-                    <strong id="checkout-total">Total: Rp 0</strong>
+                    <strong id="checkout-total">
+                        Total: Rp 0
+                    </strong>
                 </div>
 
             </div>
+
         </div>
+
 
         <!-- PAYMENT SCREENSHOT -->
 
         <div class="form-group">
-            <label for="payment-screenshot">Payment Screenshot</label>
+
+            <label for="payment-screenshot">
+                Payment Screenshot
+            </label>
 
             <div class="payment-box">
 
@@ -157,7 +211,9 @@
                     accept="image/*"
                 >
 
-                <p id="file-name">No file selected</p>
+                <p id="file-name">
+                    No file selected
+                </p>
 
                 <img
                     id="payment-preview"
@@ -166,9 +222,11 @@
                 >
 
             </div>
+
         </div>
 
-        <!-- HIDDEN INFORMATION FOR EMAILJS -->
+
+        <!-- HIDDEN INFORMATION -->
 
         <input
             type="hidden"
@@ -194,7 +252,13 @@
             name="total"
         >
 
-        <button id="submit-order" type="submit">
+
+        <!-- SUBMIT -->
+
+        <button
+            id="submit-order"
+            type="submit"
+        >
             SUBMIT ORDER
         </button>
 
@@ -202,9 +266,18 @@
 
 </section>
 
+
 <footer>
-    <img src="Logo.png" alt="Taluhu Tides Logo">
-    <p>© 2026 Taluhu Tides. All rights reserved.</p>
+
+    <img
+        src="Logo.png"
+        alt="Taluhu Tides Logo"
+    >
+
+    <p>
+        © 2026 Taluhu Tides. All rights reserved.
+    </p>
+
 </footer>
 
 
