@@ -1,6 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
 // ===============================
 // CART
 // ===============================
@@ -11,18 +10,13 @@ const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
 
 buttons.forEach(button => {
-
     button.addEventListener("click", () => {
-
         addToCart(
             button.dataset.name,
             Number(button.dataset.price)
         );
-
     });
-
 });
-
 
 function addToCart(name, price) {
 
@@ -31,17 +25,13 @@ function addToCart(name, price) {
     );
 
     if (existingItem) {
-
         existingItem.quantity++;
-
     } else {
-
         cart.push({
             name: name,
             price: price,
             quantity: 1
         });
-
     }
 
     localStorage.setItem(
@@ -51,9 +41,7 @@ function addToCart(name, price) {
 
     updateCart();
     showNotification();
-
 }
-
 
 function updateCart() {
 
@@ -91,26 +79,18 @@ function updateCart() {
             `;
 
             cartItems.appendChild(cartItem);
-
         }
-
     });
 
     if (cartTotal) {
-
         cartTotal.textContent =
             `Total: Rp ${total.toLocaleString("id-ID")}`;
-
     }
 
     if (cartCount) {
-
         cartCount.textContent = count;
-
     }
-
 }
-
 
 function removeItem(index) {
 
@@ -122,9 +102,7 @@ function removeItem(index) {
     );
 
     updateCart();
-
 }
-
 
 function showNotification() {
 
@@ -151,9 +129,7 @@ function showNotification() {
     );
 
     setTimeout(() => {
-
         notification.classList.add("show");
-
     }, 10);
 
     setTimeout(() => {
@@ -163,15 +139,11 @@ function showNotification() {
         );
 
         setTimeout(() => {
-
             notification.remove();
-
         }, 300);
 
     }, 5000);
-
 }
-
 
 // ===============================
 // PRODUCT MODAL
@@ -211,7 +183,6 @@ const modalCartButton =
     document.getElementById(
         "modal-cart-button"
     );
-
 
 productImages.forEach(image => {
 
@@ -259,12 +230,9 @@ productImages.forEach(image => {
                 button.dataset.price;
 
             modal.classList.add("show");
-
         }
     );
-
 });
-
 
 if (modalClose) {
 
@@ -278,9 +246,7 @@ if (modalClose) {
 
         }
     );
-
 }
-
 
 if (modal) {
 
@@ -288,21 +254,16 @@ if (modal) {
         "click",
         event => {
 
-            if (
-                event.target === modal
-            ) {
+            if (event.target === modal) {
 
                 modal.classList.remove(
                     "show"
                 );
 
             }
-
         }
     );
-
 }
-
 
 if (modalCartButton) {
 
@@ -320,12 +281,9 @@ if (modalCartButton) {
             modal.classList.remove(
                 "show"
             );
-
         }
     );
-
 }
-
 
 // ===============================
 // CHECKOUT BUTTON
@@ -354,15 +312,11 @@ if (checkoutButton) {
                     "checkout.html";
 
             }
-
         }
     );
-
 }
 
-
 updateCart();
-
 
 // ===============================
 // PO BATCH 1 POPUP
@@ -383,7 +337,6 @@ const popupShop =
         "popup-shop"
     );
 
-
 if (poPopup) {
 
     const popupShown =
@@ -402,11 +355,8 @@ if (poPopup) {
             "poPopupShown",
             "true"
         );
-
     }
-
 }
-
 
 if (popupClose) {
 
@@ -419,9 +369,7 @@ if (popupClose) {
 
         }
     );
-
 }
-
 
 if (popupShop) {
 
@@ -444,12 +392,9 @@ if (popupShop) {
                 });
 
             }
-
         }
     );
-
 }
-
 
 // ===============================
 // CHECKOUT ORDER SUMMARY
@@ -474,7 +419,6 @@ const totalField =
     document.getElementById(
         "total"
     );
-
 
 if (
     checkoutItems &&
@@ -523,13 +467,10 @@ if (
         details.push(
             `${item.name} × ${item.quantity} - Rp ${itemTotal.toLocaleString("id-ID")}`
         );
-
     });
-
 
     checkoutTotal.textContent =
         `Total: Rp ${checkoutTotalPrice.toLocaleString("id-ID")}`;
-
 
     if (orderDetailsField) {
 
@@ -539,16 +480,13 @@ if (
 
     }
 
-
     if (totalField) {
 
         totalField.value =
             `Rp ${checkoutTotalPrice.toLocaleString("id-ID")}`;
 
     }
-
 }
-
 
 // ===============================
 // INTERNAL / EXTERNAL
@@ -556,7 +494,7 @@ if (
 
 const checkoutOptions =
     document.querySelectorAll(
-        ".checkout-option"
+        ".checkout-option[data-type]"
     );
 
 const customerTypeField =
@@ -564,16 +502,34 @@ const customerTypeField =
         "customer-type"
     );
 
-const kelasGroup =
+const internalTypeGroup =
     document.getElementById(
-        "kelas-group"
+        "internal-type-group"
     );
 
-const kelasInput =
+const internalTypeOptions =
+    document.querySelectorAll(
+        "#internal-type-group .checkout-option[data-internal-type]"
+    );
+
+const internalTypeField =
+    document.getElementById(
+        "internal-type"
+    );
+
+const siswiDetails =
+    document.getElementById(
+        "siswi-details"
+    );
+
+const kelasAbsenInput =
     document.getElementById(
         "kelas-absen"
     );
 
+// ===============================
+// INTERNAL / EXTERNAL CLICK
+// ===============================
 
 checkoutOptions.forEach(option => {
 
@@ -581,64 +537,159 @@ checkoutOptions.forEach(option => {
         "click",
         () => {
 
-            checkoutOptions.forEach(
-                button => {
-                    button.classList.remove(
-                        "selected"
-                    );
-                }
-            );
+            checkoutOptions.forEach(button => {
+
+                button.classList.remove(
+                    "selected"
+                );
+
+            });
 
             option.classList.add(
                 "selected"
             );
 
+            const customerType =
+                option.dataset.type;
 
             if (customerTypeField) {
 
                 customerTypeField.value =
-                    option.dataset.type;
+                    customerType;
 
             }
 
+            // ===============================
+            // INTERNAL
+            // ===============================
 
-            // Kelas / No Absen
-            // is needed for Internal
+            if (customerType === "Internal") {
 
-            if (
-                option.dataset.type ===
-                "Internal"
-            ) {
+                if (internalTypeGroup) {
 
-                if (kelasGroup) {
-
-                    kelasGroup.style.display =
+                    internalTypeGroup.style.display =
                         "block";
 
                 }
 
-            } else {
+            }
 
-                if (kelasGroup) {
+            // ===============================
+            // EXTERNAL
+            // ===============================
 
-                    kelasGroup.style.display =
+            else {
+
+                if (internalTypeGroup) {
+
+                    internalTypeGroup.style.display =
                         "none";
 
                 }
 
-                if (kelasInput) {
+                if (siswiDetails) {
 
-                    kelasInput.value = "";
+                    siswiDetails.style.display =
+                        "none";
+
+                }
+
+                internalTypeOptions.forEach(button => {
+
+                    button.classList.remove(
+                        "selected"
+                    );
+
+                });
+
+                if (internalTypeField) {
+
+                    internalTypeField.value =
+                        "";
+
+                }
+
+                if (kelasAbsenInput) {
+
+                    kelasAbsenInput.value =
+                        "";
+
+                }
+            }
+        }
+    );
+});
+
+// ===============================
+// SISWI / GURU-STAFF
+// ===============================
+
+internalTypeOptions.forEach(option => {
+
+    option.addEventListener(
+        "click",
+        () => {
+
+            internalTypeOptions.forEach(button => {
+
+                button.classList.remove(
+                    "selected"
+                );
+
+            });
+
+            option.classList.add(
+                "selected"
+            );
+
+            const internalType =
+                option.dataset.internalType;
+
+            if (internalTypeField) {
+
+                internalTypeField.value =
+                    internalType;
+
+            }
+
+            // ===============================
+            // SISWI
+            // ===============================
+
+            if (internalType === "Siswi") {
+
+                if (siswiDetails) {
+
+                    siswiDetails.style.display =
+                        "block";
 
                 }
 
             }
 
+            // ===============================
+            // GURU / STAFF
+            // ===============================
+
+            else {
+
+                if (siswiDetails) {
+
+                    siswiDetails.style.display =
+                        "none";
+
+                }
+
+                if (kelasAbsenInput) {
+
+                    kelasAbsenInput.value =
+                        "";
+
+                }
+            }
         }
     );
-
 });
-
 
 // ===============================
 // DELIVERY OPTION
@@ -654,7 +705,6 @@ const deliveryMethodField =
         "delivery-method"
     );
 
-
 deliveryOptions.forEach(option => {
 
     option.addEventListener(
@@ -663,9 +713,11 @@ deliveryOptions.forEach(option => {
 
             deliveryOptions.forEach(
                 button => {
+
                     button.classList.remove(
                         "selected"
                     );
+
                 }
             );
 
@@ -673,19 +725,15 @@ deliveryOptions.forEach(option => {
                 "selected"
             );
 
-
             if (deliveryMethodField) {
 
                 deliveryMethodField.value =
                     option.dataset.delivery;
 
             }
-
         }
     );
-
 });
-
 
 // ===============================
 // PAYMENT SCREENSHOT
@@ -706,7 +754,6 @@ const paymentPreview =
         "payment-preview"
     );
 
-
 if (paymentScreenshot) {
 
     paymentScreenshot.addEventListener(
@@ -718,14 +765,12 @@ if (paymentScreenshot) {
 
             if (!file) return;
 
-
             if (fileName) {
 
                 fileName.textContent =
                     file.name;
 
             }
-
 
             if (paymentPreview) {
 
@@ -740,20 +785,15 @@ if (paymentScreenshot) {
 
                         paymentPreview.style.display =
                             "block";
-
                     };
 
                 reader.readAsDataURL(
                     file
                 );
-
             }
-
         }
     );
-
 }
-
 
 // ===============================
 // SUBMIT ORDER TO GOOGLE SHEETS
@@ -767,7 +807,6 @@ const checkoutForm =
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbxyuZP-DsynLfpwhCawi1n4-f37XPp2YvhbqXthReGG4ql8weFsmgAXliA_CJ6mmjF9UA/exec";
 
-
 if (checkoutForm) {
 
     checkoutForm.addEventListener(
@@ -775,7 +814,6 @@ if (checkoutForm) {
         async event => {
 
             event.preventDefault();
-
 
             // ===============================
             // GET ALL INFORMATION
@@ -803,7 +841,12 @@ if (checkoutForm) {
 
             const selectedCustomer =
                 document.querySelector(
-                    ".checkout-option.selected"
+                    ".checkout-option[data-type].selected"
+                );
+
+            const selectedInternalType =
+                document.querySelector(
+                    "#internal-type-group .checkout-option[data-internal-type].selected"
                 );
 
             const selectedDelivery =
@@ -811,11 +854,10 @@ if (checkoutForm) {
                     ".delivery-option.selected"
                 );
 
-            const kelas =
-                kelasInput
-                    ? kelasInput.value.trim()
+            const kelasAbsen =
+                kelasAbsenInput
+                    ? kelasAbsenInput.value.trim()
                     : "";
-
 
             // ===============================
             // VALIDATION
@@ -832,9 +874,7 @@ if (checkoutForm) {
                 ).focus();
 
                 return;
-
             }
-
 
             if (!phoneNumber) {
 
@@ -847,9 +887,7 @@ if (checkoutForm) {
                 ).focus();
 
                 return;
-
             }
-
 
             if (!email) {
 
@@ -858,13 +896,13 @@ if (checkoutForm) {
                 );
 
                 if (emailInput) {
+
                     emailInput.focus();
+
                 }
 
                 return;
-
             }
-
 
             if (!selectedCustomer) {
 
@@ -873,36 +911,55 @@ if (checkoutForm) {
                 );
 
                 return;
-
             }
 
+            // ===============================
+            // INTERNAL VALIDATION
+            // ===============================
 
             if (
                 selectedCustomer.dataset.type ===
-                "Internal" &&
-                !kelas
+                "Internal"
             ) {
 
-                alert(
-                    "Please enter your Kelas / No Absen."
-                );
+                if (!selectedInternalType) {
 
-                if (kelasInput) {
-                    kelasInput.focus();
+                    alert(
+                        "Please select Siswi or Guru / Staff."
+                    );
+
+                    return;
                 }
 
-                return;
+                // ===============================
+                // SISWI VALIDATION
+                // ===============================
 
+                if (
+                    selectedInternalType.dataset.internalType ===
+                    "Siswi"
+                ) {
+
+                    if (!kelasAbsen) {
+
+                        alert(
+                            "Please enter your Kelas + No. Absen."
+                        );
+
+                        if (kelasAbsenInput) {
+
+                            kelasAbsenInput.focus();
+
+                        }
+
+                        return;
+                    }
+                }
             }
-            const kelasAbsen = document.getElementById("kelas-absen");
 
-if (
-    selectedCustomer.dataset.type === "Internal" &&
-    (!kelasAbsen || !kelasAbsen.value.trim())
-) {
-    alert("Please enter your Kelas / No Absen.");
-    return;
-}
+            // ===============================
+            // DELIVERY VALIDATION
+            // ===============================
 
             if (!selectedDelivery) {
 
@@ -911,9 +968,11 @@ if (
                 );
 
                 return;
-
             }
 
+            // ===============================
+            // PAYMENT VALIDATION
+            // ===============================
 
             if (
                 !paymentScreenshot ||
@@ -925,9 +984,7 @@ if (
                 );
 
                 return;
-
             }
-
 
             // ===============================
             // CALCULATE ORDER
@@ -936,9 +993,13 @@ if (
             const customerType =
                 selectedCustomer.dataset.type;
 
+            const internalType =
+                selectedInternalType
+                    ? selectedInternalType.dataset.internalType
+                    : "";
+
             const deliveryMethod =
                 selectedDelivery.dataset.delivery;
-
 
             const total =
                 cart.reduce(
@@ -948,7 +1009,6 @@ if (
                         item.quantity,
                     0
                 );
-
 
             const details =
                 cart.map(item => {
@@ -961,11 +1021,9 @@ if (
 
                 });
 
-
             const orderDetails =
                 details.join("\n") +
                 `\nTotal: Rp ${total.toLocaleString("id-ID")}`;
-
 
             // ===============================
             // READ PAYMENT IMAGE
@@ -979,24 +1037,20 @@ if (
                     "submit-order"
                 );
 
-
             submitButton.disabled =
                 true;
 
             submitButton.innerHTML =
                 "SENDING...<br>please wait a moment<br>DO NOT REFRESH.";
 
-
             const reader =
                 new FileReader();
-
 
             reader.onload =
                 async function(event) {
 
                     const paymentScreenshotData =
                         event.target.result;
-
 
                     const orderData = {
 
@@ -1012,8 +1066,11 @@ if (
                         customer_type:
                             customerType,
 
+                        internal_category:
+                            internalType,
+
                         kelas_absen:
-                            kelas,
+                            kelasAbsen,
 
                         delivery_method:
                             deliveryMethod,
@@ -1026,9 +1083,7 @@ if (
 
                         payment_screenshot:
                             paymentScreenshotData
-
                     };
-
 
                     try {
 
@@ -1049,20 +1104,16 @@ if (
                             }
                         );
 
-
                         alert(
                             "Order submitted successfully!"
                         );
-
 
                         localStorage.removeItem(
                             "cart"
                         );
 
-
                         window.location.href =
                             "thankyou.html";
-
 
                     } catch (error) {
 
@@ -1071,28 +1122,21 @@ if (
                             error
                         );
 
-
                         alert(
                             "Something went wrong while submitting your order. Please try again."
                         );
-
 
                         submitButton.disabled =
                             false;
 
                         submitButton.textContent =
                             "SUBMIT ORDER";
-
                     }
-
                 };
-
 
             reader.readAsDataURL(
                 file
             );
-
         }
     );
-
 }
