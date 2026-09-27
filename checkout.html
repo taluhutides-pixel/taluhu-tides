@@ -32,10 +32,9 @@
 
     <h1>CHECKOUT FORM</h1>
 
-<form class="checkout-form" id="checkout-form" novalidate>
+    <form class="checkout-form" id="checkout-form" novalidate>
 
         <!-- FULL NAME + PHONE -->
-
         <div class="form-row">
 
             <div class="form-group">
@@ -60,10 +59,9 @@
 
         </div>
 
-
         <!-- EMAIL -->
-
         <div class="form-group">
+
             <label for="email">Email</label>
 
             <input
@@ -71,11 +69,10 @@
                 id="email"
                 name="email"
             >
+
         </div>
 
-
         <!-- INTERNAL / EXTERNAL -->
-
         <div class="form-group">
 
             <label>Internal or External</label>
@@ -102,30 +99,61 @@
 
         </div>
 
-
-        <!-- KELAS / NO ABSEN -->
-
+        <!-- INTERNAL TYPE -->
         <div
             class="form-group"
-            id="kelas-group"
+            id="internal-type-group"
             style="display: none;"
         >
 
-            <label for="kelas-absen">
-                Kelas / No Absen
-            </label>
+            <label>Internal Type</label>
 
-            <input
-                type="text"
-                id="kelas-absen"
-                name="kelas_absen"
-            >
+            <div class="checkout-options">
+
+                <button
+                    type="button"
+                    class="checkout-option"
+                    data-internal-type="Siswi"
+                >
+                    SISWI
+                </button>
+
+                <button
+                    type="button"
+                    class="checkout-option"
+                    data-internal-type="Guru/Staff"
+                >
+                    GURU / STAFF
+                </button>
+
+            </div>
 
         </div>
 
+        <!-- KELAS + NO ABSEN -->
+        <div
+            id="siswi-details"
+            style="display: none;"
+        >
+
+            <div class="form-group">
+
+                <label for="kelas-absen">
+                    Kelas + No. Absen
+                </label>
+
+                <input
+                    type="text"
+                    id="kelas-absen"
+                    name="kelas_absen"
+                    placeholder="Contoh: 91/2"
+                >
+
+            </div>
+
+        </div>
 
         <!-- DELIVERY -->
-
         <div class="form-group">
 
             <label>Delivery Option</label>
@@ -161,9 +189,7 @@
 
         </div>
 
-
         <!-- ORDER SUMMARY -->
-
         <div class="form-group">
 
             <label>Order Summary</label>
@@ -179,18 +205,18 @@
                 <div id="checkout-items"></div>
 
                 <div class="order-summary-total">
+
                     <strong id="checkout-total">
                         Total: Rp 0
                     </strong>
+
                 </div>
 
             </div>
 
         </div>
 
-
         <!-- PAYMENT SCREENSHOT -->
-
         <div class="form-group">
 
             <label for="payment-screenshot">
@@ -227,13 +253,24 @@
 
         </div>
 
-
         <!-- HIDDEN INFORMATION -->
 
         <input
             type="hidden"
             id="customer-type"
             name="customer_type"
+        >
+
+        <input
+            type="hidden"
+            id="internal-type"
+            name="internal_type"
+        >
+
+        <input
+            type="hidden"
+            id="kelas-absen-hidden"
+            name="kelas_absen_hidden"
         >
 
         <input
@@ -254,9 +291,7 @@
             name="total"
         >
 
-
         <!-- SUBMIT -->
-
         <button
             id="submit-order"
             type="submit"
@@ -267,7 +302,6 @@
     </form>
 
 </section>
-
 
 <footer>
 
@@ -281,7 +315,6 @@
     </p>
 
 </footer>
-
 
 <script src="script.js"></script>
 
