@@ -223,33 +223,47 @@
                 Payment Screenshot
             </label>
 
-            <div class="payment-box">
+<div class="payment-box">
 
-                <label
-                    for="payment-screenshot"
-                    class="upload-button"
-                >
-                    UPLOAD PAYMENT SCREENSHOT
-                </label>
+    <!-- PAYMENT ACCOUNT INFO -->
+    <div class="payment-info">
+        <div class="payment-account">
+            BCA: 428 - 068 - 8831
+        </div>
 
-                <input
-                    type="file"
-                    id="payment-screenshot"
-                    name="payment_screenshot"
-                    accept="image/*"
-                >
+        <div class="payment-bank">
+            Felicia Widjaja Pranata<br>
+            Akan kami hubungi melalui WA jika anda menggunakan pilihan GOJEK (extra fee)
+        </div>
+    </div>
 
-                <p id="file-name">
-                    No file selected
-                </p>
+    <!-- EXISTING UPLOAD BUTTON -->
+    <label
+        for="payment-screenshot"
+        class="upload-button"
+    >
+        UPLOAD PAYMENT SCREENSHOT
+    </label>
 
-                <img
-                    id="payment-preview"
-                    src=""
-                    alt="Payment Screenshot Preview"
-                >
+    <input
+        type="file"
+        id="payment-screenshot"
+        name="payment_screenshot"
+        accept="image/*"
+    >
 
-            </div>
+    <p id="file-name">
+        No file selected
+    </p>
+
+    <img
+        id="payment-preview"
+        src=""
+        alt="Payment Screenshot Preview"
+    >
+
+</div>
+
 
         </div>
 

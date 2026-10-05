@@ -617,7 +617,13 @@ footer img {
     margin: 20px 0 10px;
     color: #173f4f;
 }
-
+.modal-content #modal-description {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #8a9299;
+}
 .modal-content p {
     margin-bottom: 20px;
     font-size: 20px;
@@ -1054,4 +1060,43 @@ footer img {
     .thankyou-box {
         padding: 45px 25px;
     }
+}
+.payment-info {
+    margin-top: 20px;
+    padding: 20px 24px;
+    border-top: 1px solid #ddd;
+    text-align: left;
+}
+
+.payment-account {
+    font-size: 28px;
+    font-weight: 700;
+    color: #24527a;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+
+/* ===============================
+   PAYMENT ACCOUNT INFO
+   =============================== */
+
+.payment-info {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.payment-account {
+    font-size: 20px;
+    font-weight: 700;
+    color: #072a4a;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.payment-bank {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #8a9299;
+    letter-spacing: 0.4px;
 }

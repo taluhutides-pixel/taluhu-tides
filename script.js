@@ -145,6 +145,7 @@ function showNotification() {
     }, 5000);
 }
 
+
 // ===============================
 // PRODUCT MODAL
 // ===============================
@@ -167,6 +168,11 @@ const modalImage =
 const modalName =
     document.getElementById(
         "modal-name"
+    );
+
+const modalDescription =
+    document.getElementById(
+        "modal-description"
     );
 
 const modalPrice =
@@ -212,6 +218,17 @@ productImages.forEach(image => {
                     ".cart-button"
                 );
 
+            const description =
+                button
+                    ? (
+                        button.dataset.desc ||
+                        "desc for later"
+                    )
+                    : "desc for later";
+
+            const unavailable =
+                !button;
+
             if (!modal) return;
 
             modalImage.src =
@@ -220,16 +237,32 @@ productImages.forEach(image => {
             modalName.textContent =
                 name;
 
+            modalDescription.textContent =
+                description;
+
             modalPrice.textContent =
                 priceText;
 
-            modalCartButton.dataset.name =
-                button.dataset.name;
+            if (unavailable) {
 
-            modalCartButton.dataset.price =
-                button.dataset.price;
+                modalCartButton.style.display =
+                    "none";
 
-            modal.classList.add("show");
+            } else {
+
+                modalCartButton.style.display =
+                    "block";
+
+                modalCartButton.dataset.name =
+                    button.dataset.name;
+
+                modalCartButton.dataset.price =
+                    button.dataset.price;
+            }
+
+            modal.classList.add(
+                "show"
+            );
         }
     );
 });
@@ -254,7 +287,9 @@ if (modal) {
         "click",
         event => {
 
-            if (event.target === modal) {
+            if (
+                event.target === modal
+            ) {
 
                 modal.classList.remove(
                     "show"
@@ -284,6 +319,7 @@ if (modalCartButton) {
         }
     );
 }
+
 
 // ===============================
 // CHECKOUT BUTTON
